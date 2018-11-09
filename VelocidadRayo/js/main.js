@@ -1,12 +1,4 @@
-function genera_tabla() {
-  // Obtener la referencia del elemento body
-  var body = document.getElementsByTagName("body")[0];
- 
-  // Crea un elemento <table> y un elemento <tbody>
-  var tabla   = document.createElement("table");
-  var tblBody = document.createElement("tbody");
-
-  //Crear Iniciales
+   //Crear Iniciales
   var imgs = [];
   var imgbochas = new Image();
   imgbochas.src = "./img/iconobochas.png";
@@ -64,6 +56,16 @@ function genera_tabla() {
   imgviolin.src = "./img/iconoviolin.png";
   imgs.push(imgviolin);
 
+
+function genera_tabla() {
+  // Obtener la referencia del elemento body
+  var body = document.getElementsByTagName("body")[0];
+ 
+  // Crea un elemento <table> y un elemento <tbody>
+  var tabla   = document.createElement("table");
+  var tblBody = document.createElement("tbody");
+
+ 
   // Crea las hileras de tabla
   for (var i = 0; i < 4; i++) {
     // Crea las celdas
@@ -76,7 +78,7 @@ function genera_tabla() {
       //Crea imagen
       var imgCelda = new Image();
       var celda = document.createElement("td");
-      imgCelda.src = "./img/iconobochas.png";
+      imgCelda = imgs[(Math.floor((Math.random() * 13) + 1))];
       celda.appendChild(imgCelda);
       hilera.appendChild(celda);
     }
@@ -91,4 +93,30 @@ function genera_tabla() {
   body.appendChild(tabla);
   // modifica el atributo "border" de la tabla y lo fija a "2";
   tabla.setAttribute("border", "2");
+}
+/**
+ * Funcion para cambiar la imagen y link
+ */
+var cont=0;
+var imagenPatron=document.getElementById("imagen");
+function rotarImagenes()
+{
+    // obtenemos un numero aleatorio entre 0 y la cantidad de imagenes que hay
+    //var index = (Math.floor((Math.random() * 13) + 1));
+
+    // cambiamos la imagen y la url
+  imagenPatron=imgs[(Math.floor((Math.random() * 13) + 1))];
+    
+}
+
+/**
+ * Función que se ejecuta una vez cargada la página
+ */
+onload=function()
+{
+    // Cargamos una imagen aleatoria
+    rotarImagenes();
+
+    // Indicamos que cada 5 segundos cambie la imagen
+    setInterval(rotarImagenes,3000);
 }
